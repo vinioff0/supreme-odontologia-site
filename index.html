@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#BCEAF8;font-family:Inter,system-ui,sans-serif;color:#171717;-webkit-font-smoothing:antialiased}
+a{color:#087DB5;text-decoration:none}
+a:hover{color:#FF450D}
+a:focus-visible,button:focus-visible{outline:3px solid #087DB5;outline-offset:3px}
+@keyframes so-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.so-track{animation:none!important}}
+</style>
+</helmet>
+<div style="padding:clamp(10px,3vw,44px);box-sizing:border-box;min-height:100vh">
+<div style="max-width:1320px;margin:0 auto;background:#FFFFFF;border-radius:clamp(18px,2.4vw,32px);overflow:hidden;position:relative">
+
+<header id="inicio" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(18px,3vw,36px);position:relative;z-index:20">
+  <a href="#inicio" aria-label="Supreme Odontologia — início" style="display:flex;align-items:baseline;gap:7px;color:#171717;font-size:17px;letter-spacing:.04em">
+    <span style="font-weight:700;color:#39BCEB">SUPREME</span><span style="font-weight:500">ODONTOLOGIA</span>
+  </a>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <nav aria-label="Principal" style="display:flex;gap:clamp(18px,2.2vw,34px);white-space:nowrap;font-size:12.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase">
+      <a href="#inicio" style="color:#FF450D">Início</a>
+      <a href="#clinica" style="color:#171717" style-hover="color:#FF450D">A Clínica</a>
+      <a href="#tratamentos" style="color:#171717" style-hover="color:#FF450D">Tratamentos</a>
+      <a href="#avaliacoes" style="color:#171717" style-hover="color:#FF450D">Avaliações</a>
+      <a href="#contato" style="color:#171717" style-hover="color:#FF450D">Contato</a>
+    </nav>
+  </sc-if>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="https://wa.me/5548991190203" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;background:#FF450D;color:#FFFFFF;padding:{{ btnPad }};border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.05em;white-space:nowrap" style-hover="background:#e33a06;color:#FFFFFF">
+      <span>{{ ctaLabel }}</span><span aria-hidden="true" style="font-size:17px;line-height:1">↗</span>
+    </a>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-label="Abrir menu" style="width:44px;height:44px;border-radius:999px;border:1px solid #d9eef6;background:#FFFFFF;color:#171717;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center">{{ menuIcon }}</button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ showMobileMenu }}" hint-placeholder-val="{{ false }}">
+    <nav aria-label="Principal" style="position:absolute;top:84px;left:14px;right:14px;background:#FFFFFF;border:1px solid #d9eef6;border-radius:20px;padding:10px;display:flex;flex-direction:column;box-shadow:0 18px 40px rgba(8,125,181,.12)">
+      <a href="#inicio" onClick="{{ closeMenu }}" style="padding:14px 16px;color:#171717;font-weight:500">Início</a>
+      <a href="#clinica" onClick="{{ closeMenu }}" style="padding:14px 16px;color:#171717;font-weight:500">A Clínica</a>
+      <a href="#tratamentos" onClick="{{ closeMenu }}" style="padding:14px 16px;color:#171717;font-weight:500">Tratamentos</a>
+      <a href="#avaliacoes" onClick="{{ closeMenu }}" style="padding:14px 16px;color:#171717;font-weight:500">Avaliações</a>
+      <a href="#contato" onClick="{{ closeMenu }}" style="padding:14px 16px;color:#171717;font-weight:500">Contato</a>
+    </nav>
+  </sc-if>
+</header>
+
+<section aria-labelledby="hero-title" style="padding:0 clamp(12px,1.6vw,20px);position:relative;z-index:5">
+  <div style="position:relative;border-radius:clamp(18px,2vw,28px);background:linear-gradient(90deg,#BCEAF8 0%,#dcf3fb 38%,#ffffff 78%);padding:clamp(14px,1.6vw,22px) clamp(16px,2.6vw,40px) clamp(28px,3vw,44px)">
+    <h1 id="hero-title" style="margin:0;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(52px,10.4vw,148px);line-height:.92;letter-spacing:.005em;text-transform:uppercase;background:linear-gradient(90deg,#8fd9f4 0%,#39BCEB 32%,#1fa6dc 70%,#087DB5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance;position:relative;z-index:1">Seu sorriso<br>merece o melhor</h1>
+    <div style="display:grid;grid-template-columns:{{ heroCols }};gap:clamp(16px,2vw,32px);align-items:center;margin-top:{{ heroGridTop }}">
+      <div style="display:flex;flex-direction:column;gap:28px;align-items:flex-start;position:relative;z-index:6;order:{{ leftOrder }}">
+        <p style="margin:0;background:#FFFFFF;border-radius:16px;padding:18px 20px;font-size:15px;line-height:1.55;color:#171717;max-width:300px;box-shadow:0 10px 30px rgba(8,125,181,.08);text-wrap:pretty">Cuidar do seu sorriso pode ser uma experiência leve, acolhedora e segura.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:13px;color:#171717">
+          <span style="color:#858585">Onde estamos</span>
+          <span style="font-weight:600">Pagani, Palhoça - SC</span>
+        </div>
+        <a href="https://wa.me/5548991190203" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:16px;background:#FF450D;color:#FFFFFF;padding:17px 28px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.05em" style-hover="background:#e33a06;color:#FFFFFF">
+          <span>AGENDAR CONSULTA</span><span aria-hidden="true" style="font-size:18px;line-height:1">↗</span>
+        </a>
+      </div>
+      <div style="position:relative;z-index:4;display:flex;justify-content:center;order:{{ toothOrder }};margin-bottom:{{ toothBottom }};margin-top:{{ toothTop }};pointer-events:none">
+        <img src="assets/tooth.jpg" alt="Dente branco em 3D envolto por respingos de água azul" style="width:{{ toothWidth }};max-width:none;height:auto;display:block;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 46% 50% at 50% 52%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 46% 50% at 50% 52%,#000 62%,transparent 100%)">
+      </div>
+      <dl style="margin:0;display:flex;flex-direction:{{ statsDir }};flex-wrap:{{ statsWrap }};min-width:0;gap:clamp(22px,2.6vw,40px);position:relative;z-index:6;order:3;padding-left:{{ statsPad }}">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <dt style="font-size:clamp(22px,2vw,28px);font-weight:600;color:#FF450D;letter-spacing:-.01em">5,0/5,0</dt>
+          <dd style="margin:0;font-size:13.5px;color:#171717">Avaliação informada no Google</dd>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <dt style="font-size:clamp(22px,2vw,28px);font-weight:600;color:#FF450D;letter-spacing:-.01em">84 avaliações</dt>
+          <dd style="margin:0;font-size:13.5px;color:#171717">Opiniões de pacientes</dd>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <dt style="font-size:clamp(22px,2vw,28px);font-weight:600;color:#FF450D;letter-spacing:-.01em">Seu sorriso</dt>
+          <dd style="margin:0;font-size:13.5px;color:#171717">Cuidado e atenção em cada atendimento</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<div style="background:#BCEAF8;position:relative;z-index:2;overflow:hidden;padding:clamp(16px,1.8vw,26px) 0;margin-top:clamp(14px,1.4vw,20px)">
+  {{ marquee }}
+</div>
+
+<section id="clinica" aria-labelledby="clinica-title" style="scroll-margin-top:20px;padding:clamp(64px,8vw,120px) clamp(20px,6vw,90px) clamp(48px,6vw,90px)">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:36px 60px;align-items:flex-start">
+    <h2 id="clinica-title" style="margin:0;font-weight:400;font-size:clamp(36px,4.2vw,58px);line-height:1.08;letter-spacing:-.015em">
+      <span style="color:#858585">A clínica</span><br><span style="color:#171717;font-weight:500">Supreme</span>
+    </h2>
+    <div style="max-width:430px;display:flex;flex-direction:column;gap:12px">
+      <span style="color:#FF450D;font-weight:600;font-size:15px">Nosso compromisso</span>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:#171717;text-wrap:pretty">Nosso compromisso é oferecer um atendimento atencioso, profissional e acolhedor, valorizando o cuidado com a saúde bucal e a confiança de cada paciente.</p>
+      <div aria-hidden="true" style="display:flex;gap:5px;margin-top:14px">
+        <span style="width:18px;height:5px;border-radius:9px;background:#FF450D"></span>
+        <span style="width:5px;height:5px;border-radius:9px;background:#e4e4e4"></span>
+        <span style="width:5px;height:5px;border-radius:9px;background:#e4e4e4"></span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(8,clamp(34px,6.6vw,92px));gap:clamp(8px,1.2vw,16px);margin-top:clamp(48px,6vw,90px);max-width:1080px;margin-left:auto;margin-right:auto">
+    <img src="assets/interior.jpg" alt="Recepção moderna de clínica odontológica" style="grid-column:1/7;grid-row:1/4;width:100%;height:100%;object-fit:cover;border-radius:clamp(12px,1.6vw,22px);display:block">
+    <img src="assets/patient.jpg" alt="Paciente sorrindo na cadeira odontológica" style="grid-column:7/11;grid-row:1/6;width:100%;height:100%;object-fit:cover;object-position:60% 40%;border-radius:clamp(12px,1.6vw,22px);display:block">
+    <div style="grid-column:11/12;grid-row:1/3;display:flex;justify-content:flex-start;align-items:flex-start">
+      <span style="writing-mode:vertical-rl;background:#FFE3D8;color:#171717;border-radius:999px;padding:14px 7px;font-size:clamp(10px,1vw,12px);white-space:nowrap">Bem-estar</span>
+    </div>
+    <div style="grid-column:2/4;grid-row:4/5;display:flex;align-items:center;justify-content:flex-end">
+      <span style="background:#BCEAF8;color:#171717;border-radius:999px;padding:7px 14px;font-size:clamp(10px,1vw,12px);white-space:nowrap">Cuidado</span>
+    </div>
+    <img src="assets/dentist.jpg" alt="Profissional odontológico atendendo paciente" style="grid-column:4/7;grid-row:4/9;width:100%;height:100%;object-fit:cover;object-position:40% 50%;border-radius:clamp(12px,1.6vw,22px);display:block">
+    <div style="grid-column:3/4;grid-row:6/9;display:flex;align-items:flex-end;justify-content:flex-end">
+      <span style="writing-mode:vertical-rl;transform:rotate(180deg);background:#FFE3D8;color:#171717;border-radius:999px;padding:14px 7px;font-size:clamp(10px,1vw,12px);white-space:nowrap">Saúde bucal</span>
+    </div>
+    <div style="grid-column:11/13;grid-row:5/6;display:flex;align-items:center">
+      <span style="background:#BCEAF8;color:#171717;border-radius:999px;padding:7px 14px;font-size:clamp(10px,1vw,12px);white-space:nowrap">Seu sorriso</span>
+    </div>
+    <img src="assets/room.jpg" alt="Consultório odontológico claro e equipado" style="grid-column:7/13;grid-row:6/9;width:100%;height:100%;object-fit:cover;border-radius:clamp(12px,1.6vw,22px);display:block">
+  </div>
+</section>
+
+<section id="tratamentos" aria-labelledby="trat-title" style="scroll-margin-top:20px;padding:clamp(40px,5vw,70px) clamp(20px,6vw,90px) clamp(64px,8vw,110px)">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 60px;align-items:flex-start">
+    <h2 id="trat-title" style="margin:0;font-weight:400;font-size:clamp(36px,4.2vw,58px);line-height:1.08;letter-spacing:-.015em">
+      <span style="color:#858585">Cuidado para</span><br><span style="color:#171717;font-weight:500">o seu sorriso</span>
+    </h2>
+    <p style="margin:0;max-width:430px;font-size:15px;line-height:1.7;color:#171717;text-wrap:pretty">Conheça as possibilidades de cuidado odontológico e encontre, com orientação profissional, a opção adequada às suas necessidades.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,70px)">
+    <article style="display:flex;flex-direction:column;gap:16px">
+      <img src="assets/smile.jpg" alt="Sorriso com dentes claros e alinhados" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:clamp(12px,1.6vw,22px);display:block">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+        <h3 style="margin:0;font-size:19px;font-weight:500">Facetas de resina</h3>
+        <span style="font-size:12px;color:#087DB5;background:#e6f7fd;border-radius:999px;padding:5px 11px;white-space:nowrap">Citado nas avaliações</span>
+      </div>
+    </article>
+    <sc-if value="{{ showProvisional }}" hint-placeholder-val="{{ true }}">
+      <article style="display:flex;flex-direction:column;gap:16px">
+        <img src="assets/instruments.jpg" alt="Instrumentais odontológicos" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:clamp(12px,1.6vw,22px);display:block">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <h3 style="margin:0;font-size:19px;font-weight:500;color:#858585">Tratamento a confirmar</h3>
+          <span style="font-size:12px;color:#171717;border:1px dashed #858585;border-radius:999px;padding:5px 11px;white-space:nowrap">Provisório</span>
+        </div>
+      </article>
+      <article style="display:flex;flex-direction:column;gap:16px">
+        <img src="assets/tooth.jpg" alt="Dente em 3D com água azul" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:clamp(12px,1.6vw,22px);display:block">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <h3 style="margin:0;font-size:19px;font-weight:500;color:#858585">Tratamento a confirmar</h3>
+          <span style="font-size:12px;color:#171717;border:1px dashed #858585;border-radius:999px;padding:5px 11px;white-space:nowrap">Provisório</span>
+        </div>
+      </article>
+    </sc-if>
+  </div>
+</section>
+
+<section id="avaliacoes" aria-labelledby="aval-title" style="scroll-margin-top:20px;margin:0 clamp(12px,1.6vw,20px);border-radius:clamp(18px,2vw,28px);background:linear-gradient(90deg,#BCEAF8 0%,#e3f6fc 60%,#f3fbfe 100%);padding:clamp(40px,5vw,72px) clamp(20px,5vw,70px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(28px,4vw,60px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 id="aval-title" style="margin:0 0 8px;font-weight:400;font-size:clamp(30px,3vw,40px);line-height:1.1;letter-spacing:-.015em"><span style="color:#858585">O que dizem</span><br><span style="font-weight:500">nossos pacientes</span></h2>
+      <div style="display:flex;align-items:baseline;gap:14px">
+        <span style="font-family:Anton,Impact,sans-serif;font-size:clamp(64px,7vw,96px);line-height:1;color:#087DB5">5,0</span>
+        <span aria-label="5 de 5 estrelas" style="color:#FF450D;font-size:20px;letter-spacing:3px">★★★★★</span>
+      </div>
+      <p style="margin:0;font-size:14px;color:#171717">84 avaliações no Google</p>
+      <p style="margin:0;font-size:12.5px;color:#5f6b70">Nota e quantidade informadas para o site, sem atualização em tempo real.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;grid-column:span {{ reviewSpan }}">
+      <p style="margin:0 0 6px;font-size:13px;color:#5f6b70">Resumo dos temas mais citados nas avaliações</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px">
+        <div style="background:#FFFFFF;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
+          <span style="color:#FF450D;font-weight:600;font-size:13px">01</span>
+          <p style="margin:0;font-size:15px;line-height:1.5;text-wrap:pretty">Satisfação com os resultados das facetas de resina.</p>
+        </div>
+        <div style="background:#FFFFFF;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
+          <span style="color:#FF450D;font-weight:600;font-size:13px">02</span>
+          <p style="margin:0;font-size:15px;line-height:1.5;text-wrap:pretty">Atendimento atencioso, educado e acolhedor.</p>
+        </div>
+        <div style="background:#FFFFFF;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
+          <span style="color:#FF450D;font-weight:600;font-size:13px">03</span>
+          <p style="margin:0;font-size:15px;line-height:1.5;text-wrap:pretty">Profissionalismo e cuidado durante as consultas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" aria-labelledby="contato-title" style="scroll-margin-top:20px;padding:clamp(72px,9vw,130px) clamp(20px,6vw,90px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
+  <h2 id="contato-title" style="margin:0;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(44px,6.4vw,92px);line-height:.95;text-transform:uppercase;color:#39BCEB;text-wrap:balance;max-width:900px">Vamos cuidar do seu sorriso?</h2>
+  <p style="margin:0;max-width:460px;font-size:16px;line-height:1.65;color:#171717;text-wrap:pretty">Entre em contato com a Supreme Odontologia e consulte a disponibilidade para seu atendimento.</p>
+  <a href="https://wa.me/5548991190203" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:16px;background:#FF450D;color:#FFFFFF;padding:19px 32px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.05em;margin-top:8px" style-hover="background:#e33a06;color:#FFFFFF">
+    <span>AGENDAR PELO WHATSAPP</span><span aria-hidden="true" style="font-size:18px;line-height:1">↗</span>
+  </a>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:22px;font-size:14px;color:#171717">
+    <span>Av. Atílio Pedro Pagani, 1109 — Pagani, Palhoça - SC, CEP 88132-149</span>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20At%C3%ADlio%20Pedro%20Pagani%2C%201109%2C%20Pagani%2C%20Palho%C3%A7a%20-%20SC%2C%2088132-149" target="_blank" rel="noopener" style="font-weight:600">Ver no Google Maps ↗</a>
+  </div>
+</section>
+
+<footer style="border-top:1px solid #edf2f4;padding:clamp(32px,4vw,48px) clamp(20px,6vw,90px) 28px;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 48px">
+    <a href="#inicio" style="display:flex;align-items:baseline;gap:7px;color:#171717;font-size:17px;letter-spacing:.04em">
+      <span style="font-weight:700;color:#39BCEB">SUPREME</span><span style="font-weight:500">ODONTOLOGIA</span>
+    </a>
+    <nav aria-label="Rodapé" style="display:flex;flex-wrap:wrap;gap:12px 26px;font-size:14px">
+      <a href="#inicio" style="color:#171717">Início</a>
+      <a href="#clinica" style="color:#171717">A Clínica</a>
+      <a href="#tratamentos" style="color:#171717">Tratamentos</a>
+      <a href="#avaliacoes" style="color:#171717">Avaliações</a>
+      <a href="#contato" style="color:#171717">Contato</a>
+    </nav>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;max-width:300px">
+      <a href="tel:+5548991190203" style="color:#171717">Telefone: (48) 99119-0203</a>
+      <a href="https://wa.me/5548991190203" target="_blank" rel="noopener">WhatsApp: (48) 99119-0203</a>
+      <span style="color:#5f6b70;line-height:1.5">Av. Atílio Pedro Pagani, 1109 — Pagani, Palhoça - SC, CEP 88132-149</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:12.5px;color:#5f6b70">© {{ year }} Supreme Odontologia. Todos os direitos reservados.</p>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animateMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showProvisional&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const { w, menuOpen } = this.state;
+    const isMobile = w < 1100, isSmall = w < 560, isWide = w >= 1250;
+    const words = ['ODONTOLOGIA', 'ESTÉTICA DENTAL', 'SAÚDE BUCAL', 'SEU SORRISO'];
+    const animate = this.props.animateMarquee ?? true;
+    const item = (k) => React.createElement('span', { key: k, style: { display: 'flex', alignItems: 'center', gap: 'clamp(20px,3vw,44px)', paddingRight: 'clamp(20px,3vw,44px)' } },
+      ...words.flatMap((t, i) => [
+        React.createElement('span', { key: 'w' + i }, t),
+        React.createElement('span', { key: 'p' + i, 'aria-hidden': 'true', style: { fontWeight: 300 } }, '+')
+      ]));
+    const marquee = React.createElement('div', { 'aria-label': words.join(' + '), role: 'text', style: { display: 'flex', width: 'max-content' } },
+      React.createElement('div', { className: 'so-track', 'aria-hidden': 'true', style: { display: 'flex', whiteSpace: 'nowrap', fontSize: 'clamp(22px,2.9vw,40px)', fontWeight: 400, color: '#171717', letterSpacing: '.01em', animation: animate ? 'so-marquee 38s linear infinite' : 'none' } },
+        item('a'), item('b')));
+    return {
+      isDesktop: !isMobile, isMobile, menuOpen, showMobileMenu: isMobile && menuOpen,
+      menuIcon: menuOpen ? '×' : '☰',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      ctaLabel: isSmall ? 'AGENDAR' : 'AGENDAR CONSULTA',
+      btnPad: isSmall ? '13px 18px' : '16px 26px',
+      heroCols: isMobile ? '1fr' : 'minmax(0,1fr) minmax(0,1.25fr) minmax(0,1fr)',
+      heroGridTop: isMobile ? '0px' : '24px',
+      toothTop: isMobile ? '0px' : (isWide ? '-170px' : '-130px'),
+      toothWidth: isMobile ? '150%' : '205%',
+      toothBottom: isMobile ? '0px' : '-150px',
+      toothOrder: isMobile ? 1 : 2, leftOrder: isMobile ? 2 : 1,
+      statsDir: isMobile ? 'row' : 'column', statsPad: isMobile ? '0px' : '8%', statsWrap: isMobile ? 'wrap' : 'nowrap',
+      reviewSpan: w < 820 ? 1 : 2,
+      showProvisional: this.props.showProvisional ?? true,
+      marquee, year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>
